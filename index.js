@@ -65,10 +65,6 @@ const questions = [
         name: 'license',
         message: 'Choose a license for your project?',
         choices: ["MIT", "ISC", "GNU GPLv3", "Apache License 2.0"],
-        validate: (value) => {
-            if (value) { return true } 
-            else { return 'Please choose a license.' }
-        },
     },
     {
         type: 'input',
