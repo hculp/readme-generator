@@ -1,14 +1,18 @@
+// Required packages
 const inquirer = require('inquirer');
 const fs = require('fs');
 const generateMarkdown = require('./utils/generateMarkdown');
+const emailValidator = require('email-validator');
 
+// Questions to ask user for README file for project creation
 const questions = [
     {
         type: 'input',
         name: 'title',
         message: 'What is your project title?',
         validate: (value) => {
-            if (value) { return true } else { return 'Please enter your project title.' }
+            if (value) { return true } 
+            else { return 'Please enter your project title.' }
         },
     },
     {
@@ -16,7 +20,8 @@ const questions = [
         name: 'description',
         message: 'What is the project description?',
         validate: (value) => {
-            if (value) { return true } else { return 'Please enter a description.' }
+            if (value) { return true } 
+            else { return 'Please enter a description.' }
         },
     },
     {
@@ -24,7 +29,8 @@ const questions = [
         name: 'installation',
         message: 'What are installation instructions?',
         validate: (value) => {
-            if (value) { return true } else { return 'Please enter instructions.' }
+            if (value) { return true } 
+            else { return 'Please enter instructions.' }
         },
     },
     {
@@ -32,7 +38,8 @@ const questions = [
         name: 'usage',
         message: 'What is the usage information?',
         validate: (value) => {
-            if (value) { return true } else { return 'Please enter usage information.' }
+            if (value) { return true } 
+            else { return 'Please enter usage information.' }
         },
     },
     {
@@ -40,7 +47,8 @@ const questions = [
         name: 'contribution',
         message: 'What are the contribution guidelines for this project?',
         validate: (value) => {
-            if (value) { return true } else { return 'Please enter your contribution guidelines.' }
+            if (value) { return true } 
+            else { return 'Please enter your contribution guidelines.' }
         },
     },
     {
@@ -48,7 +56,8 @@ const questions = [
         name: 'test',
         message: 'What are the test instructions?',
         validate: (value) => {
-            if (value) { return true } else { return 'Please enter testing instructions.' }
+            if (value) { return true } 
+            else { return 'Please enter testing instructions.' }
         },
     },
     {
@@ -57,7 +66,8 @@ const questions = [
         message: 'Choose a license for your project?',
         choices: ["MIT", "ISC", "GNU GPLv3", "Apache License 2.0"],
         validate: (value) => {
-            if (value) { return true } else { return 'Please choose a license.' }
+            if (value) { return true } 
+            else { return 'Please choose a license.' }
         },
     },
     {
@@ -65,7 +75,8 @@ const questions = [
         name: 'github',
         message: 'What is your GitHub username?',
         validate: (value) => {
-            if (value) { return true } else { return 'Please enter your username.' }
+            if (value) { return true } 
+            else { return 'Please enter your username.' }
         },
     },
     {
@@ -73,25 +84,26 @@ const questions = [
         name: 'email',
         message: "What email would you like to use so that others can reach out you about question on this project?",
         validate: (value) => {
-            if (emailValidator.validate(value)) {
-                return true
-            } else { return 'Please enter a valid email address' }
+            if (emailValidator.validate(value)) { return true }
+            else { return 'Please enter a valid email address' }
         },
     }
 ];
 
-// TODO: Create a function to write README file
+// Creates README.md file
 function writeToFile(fileName, data) {
-
+    fs.writeFile(fileName, data, (err) =>
+        err ? console.log(err) : console.log('Succesfully created README.md!')
+    )
 }
 
-// TODO: Create a function to initialize app
+// Initializes app by prompting user input for questions and then creates associated README.md and passes user input to generateMarkdown to then fill and format README based on user input
 function init() {
     inquirer.prompt(questions)
         .then((data) => {
-            fs.writeFile("README.md", generateMarkdown(data));
+            writeToFile("README.md", generateMarkdown(data));
         })
 }
 
-// Function call to initialize app
+// Calls for app initializing
 init();
