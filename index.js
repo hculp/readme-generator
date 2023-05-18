@@ -64,7 +64,7 @@ const questions = [
         type: 'list',
         name: 'license',
         message: 'Choose a license for your project?',
-        choices: ["MIT", "ISC", "GNU GPLv3", "Apache License 2.0"],
+        choices: ["MIT", "ISC", "GNU GPLv3", "Apache License 2.0","None"],
     },
     {
         type: 'input',
@@ -78,7 +78,7 @@ const questions = [
     {
         type: 'input',
         name: 'email',
-        message: "What email would you like to use so that others can reach out you about question on this project?",
+        message: "What is your email?",
         validate: (value) => {
             if (emailValidator.validate(value)) { return true }
             else { return 'Please enter a valid email address' }

@@ -1,8 +1,9 @@
 // Returns a license badge based on which license is passed in
 // If there is no license, return an empty string
 function renderLicenseBadge(license) {
+  let badgeName = license.replace(/ /g,"%20");
   if (license !== "None") {
-    return `![Github License](https://img.shields.io/badge/license-${license}-brightgreen)`
+    return `![Github License](https://img.shields.io/badge/license-${badgeName}-brightgreen)`
   }
   return ""
 }
@@ -11,7 +12,7 @@ function renderLicenseBadge(license) {
 // If there is no license, return an empty string
 function renderLicenseLink(license) {
   if (license !== "None") {
-    return `-[License](#license)`
+    return `[License](#license)`
   }
   return ""
 }
@@ -20,20 +21,22 @@ function renderLicenseLink(license) {
 // If there is no license, return an empty string
 function renderLicenseSection(license) {
   if (license !== "None") {
-    return `## License
+    return (
+    `## License
 
-            Copright @${license}. All rights reserved.       
+    Copright @ ${license}. All rights reserved.       
     
-            Distributed under the ${license} License.`
+    Distributed under the ${license} License.`
+    )
   }
   return ""
 }
 
 // Generates markdown for README
 function generateMarkdown(data) {
-  return `
-  # ${data.title}
-  ${renderLicenseBadge()}
+  return (
+  `# ${data.title}
+  ${renderLicenseBadge(data.license)}
   
 
   ## Description
@@ -42,12 +45,12 @@ function generateMarkdown(data) {
 
   ## Table of Contents
 
-  -[Installation](#installation)
-  -[Usage](#usage)
-  -[Contribution](#contribution)
-  -[Tests](#test)
-  -[Questions](#questions)
-  ${renderLicenseLink(data.license)}
+  * [Installation](#installation)
+  * [Usage](#usage)
+  * [Contribution](#contribution)
+  * [Tests](#test)
+  * [Questions](#questions)
+  * ${renderLicenseLink(data.license)}
 
   ## Installation
 
@@ -69,11 +72,11 @@ function generateMarkdown(data) {
 
   Send any questions or feedback to the following contacts:
 
-  * GitHub: [GitHub profile](ttps://github.com/${data.github})
-  * Email: [send an email](mailto:${data.email}).
+  * GitHub: [${data.github}](https://github.com/${data.github})
+  * Email: [${data.email}](mailto:${data.email})
   
-  ${renderLicenseSection}
-`;
+  ${renderLicenseSection(data.license)}`
+);
 }
 
 module.exports = generateMarkdown;
