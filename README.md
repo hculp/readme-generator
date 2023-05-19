@@ -37,10 +37,10 @@
   There is an example generated README.md in the [assets folder](./assets/example/README.md). Also, an exmaple image here.
   > ![](./assets/images/example_readme.png)
   
-  Here is a link to a demo [video](https://drive.google.com/file/d/1LM833rTzw4M3FS5BMOlWd1EusLxDVw1b/view)
+  Here is a link to a demo [video](https://drive.google.com/file/d/1LM833rTzw4M3FS5BMOlWd1EusLxDVw1b/view).
   ## Contribution
 
-  Contribution falls under open MIT license 
+  Contribution falls under open MIT license.
 
   ## Tests
 
