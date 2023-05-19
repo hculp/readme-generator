@@ -4,7 +4,7 @@ const fs = require('fs');
 const generateMarkdown = require('./utils/generateMarkdown');
 const emailValidator = require('email-validator');
 
-// Questions to ask user for README file for project creation
+// Questions to ask user for README file project creation
 const questions = [
     {
         type: 'input',
